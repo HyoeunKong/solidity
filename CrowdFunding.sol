@@ -8,7 +8,7 @@ contract CrowdFunding {
     
     mapping(uint => Investor) public investors;
     uint numOfInvestors;
-    uint public goalAmount = 10000000000;
+    uint public goalAmount = 1000;
     uint public totalAmount;
     address payable owner;
     
@@ -20,6 +20,7 @@ contract CrowdFunding {
     constructor() payable public{
         owner = msg.sender;
         numOfInvestors = 0;
+      
         
     }
     function func() public payable {
@@ -27,8 +28,9 @@ contract CrowdFunding {
         // => Investor()
         // => investors
         // totalAmount += msg.value;
-        investors[numOfInvestors]=Investor(msg.sender, msg.value);
+        investors[numOfInvestors ++]=Investor(msg.sender, msg.value);
         totalAmount += msg.value;
+   
     }
     
     function checkGoalFunding() public payable onlyOwner {
